@@ -1,15 +1,13 @@
 import tkinter as tk
+import time
 
 message_label = None
+command = None
+entry = None
 
 window = tk.Tk()
-window.title("Playing with Buttons")
+window.title("Playing with buttons")
 window.geometry("1100x700")
-
-
-
-def quitSettings():
-    settings.destroy()
 
 
 def message():
@@ -25,6 +23,35 @@ def message():
 def hiterminala():
     print("hi")
 
+def findlost():
+    print("searching.")
+    time.sleep(0.3)
+    print("searching..")
+    time.sleep(0.3)
+    print("searching...")
+    time.sleep(0.3)
+    print("Sorry not found")
+
+def terminal():
+    global entry
+    entry = tk.Entry(window, width=50)
+    entry.grid(column=5, row=0, padx=10, pady=10)
+
+    submit_btn = tk.Button(window, text="Submit", command=checkCommand)
+    submit_btn.grid(column=6, row=0, padx=10, pady=10)
+
+def checkCommand():
+    global command
+    command = entry.get()
+    comlabel = tk.Label(window, text=f"Command Entered: {command}")
+    comlabel.grid(column=5, row=1, padx=10, pady=10)
+    if command.lower() == "settings":
+        settingsWin()
+    elif command.lower() == "quit":
+        window.destroy()
+    elif command.lower() == "find my lost brother":
+        findlost()
+
 
 def clear():
     if message_label:
@@ -39,8 +66,20 @@ def settingsWin():
     quit_btn = tk.Button(settings, text="Quit", command=settings.destroy)
     quit_btn.pack()
 
+    adva = tk.Button(settings, text="Advanced Settings", command=advancedSettings)
+    adva.pack()
 
-quitBut = tk.Button(window, text="Quit", command=quit)
+
+def advancedSettings():
+    advancedSets = tk.Toplevel(window)
+    advancedSets.title("Advanced Setttings")
+    advancedSets.geometry("600x600")
+
+    quit_btn = tk.Button(advancedSets, text="Quit", command=advancedSets.destroy)
+    quit_btn.pack()
+
+
+quitBut = tk.Button(window, text="Quit", command=window.destroy)
 quitBut.grid(column=0, row=0, padx=10, pady=10)
 
 messageBut = tk.Button(window, text="Click Me", command=message)
@@ -54,5 +93,7 @@ clear.grid(column=3, row=0, padx=10, pady=10)
 
 settingsBut = tk.Button(window, text="Settings", command=settingsWin)
 settingsBut.grid(column=4, row=0, padx=10, pady=10)
+
+terminal()
 
 window.mainloop()
