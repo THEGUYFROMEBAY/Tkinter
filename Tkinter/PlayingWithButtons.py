@@ -16,17 +16,9 @@ def message():
 
     if message_label is None:
         message_label = tk.Label(window, text="Hello")
-        message_label.grid(column=1, row=1, pady=10, padx=10)
+        message_label.grid(column=0, row=1, columnspan=4, pady=20)
     elif not message_label.winfo_ismapped():
-        message_label.grid(column=1, row=1, pady=10, padx=10)
-
-
-quitBut = tk.Button(window, text="Quit", command=quit)
-quitBut.grid(column=0, row=0, pady=10, padx=10)
-
-messageBut = tk.Button(window, text="Click Me", command=message)
-messageBut.grid(column=1, row=0, pady=10, padx=10)
-
+        message_label.grid(column=0, row=1, columnspan=4, pady=20)
 
 def hiterminala():
     print("hi")
