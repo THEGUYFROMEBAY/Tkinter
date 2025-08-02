@@ -23,11 +23,6 @@ def message():
 def hiterminala():
     print("hi")
 
-
-hiterminal = tk.Button(window, text="Say hi in terminal", command=hiterminala)
-hiterminal.grid(column=2, row=0, pady=10, padx=10)
-
-
 def clear():
     if message_label:
         message_label.grid_forget()
